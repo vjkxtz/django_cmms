@@ -1,0 +1,63 @@
+{% extends "main.html"%}
+
+{% block content%}
+<h1> Carrier {{carrier_num}} </h1>
+<a class = "btn btn-primary" href="{{request.META.HTTP_REFERER}}">Go back</a>
+
+
+<div class="container">
+    {% for carrier in object_list %}
+        {%if carrier.front_pickup_trolly != null or carrier.front_rear_trolly != null or carrier.rear_pickup_trolly != null or carrier.rear_rear_trolly != null or carrier.front_kingpin != null or carrier.rear_kingpin != null%} 
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Front pickup</th>
+                <th scope="col">Front non pickup</th>
+                <th scope="col">Rear pickup</th>
+                <th scope="col">Rear non pickup</th>
+                <th scope="col">Front kingpin</th>
+                <th scope="col">Rear kingpin</th>
+            </tr>
+        </thead> 
+        {%endif%}
+        {%endfor%}
+        
+        <tbody>
+            {% for carrier in object_list %}
+                {%if carrier.front_pickup_trolly != null or carrier.front_rear_trolly != null or carrier.rear_pickup_trolly != null or carrier.rear_rear_trolly != null or carrier.front_kingpin != null or carrier.rear_kingpin != null%}  
+                    <tr>
+                    <td>{%if carrier.front_pickup_trolly != null %}{{carrier.front_pickup_trolly}}{%endif %}</td>           
+                    <td>{% if carrier.front_rear_trolly != null %}{{carrier.front_rear_trolly}}{%endif%}</td>
+                    <td>{%if carrier.rear_pickup_trolly != null%}{{carrier.rear_pickup_trolly}}{%endif%}</td>
+                    <td>{%if carrier.rear_nonpickup_trolly != null%}{{carrier.rear_nonpickup_trolly}}{%endif%}</td>
+                    <td>{%if carrier.front_kingpin != null%}{{carrier.front_kingpin}}{%endif%}</td>
+                    <td>{%if carrier.rear_kingpin != null%}{{carrier.rear_kingpin}}{%endif%}</td>
+                    </tr>
+                    {% endif %}
+
+            {% endfor%}
+        </tbody>
+
+    </table>
+</div>
+<div class="container">
+<table class="table table-hover table-">
+    <tr> <th scope="row">Carrier work</th>
+    </tr>
+    {% for carrier in object_list %}
+    {% if carrier.work_done != blank %}
+    <tr class=""> 
+        <td> 
+            {{carrier.changed_date}}</td>  
+            <td>{{carrier.work_done}}</td>
+            <td> <a class="btn btn-primary" href=""> Carrier </a> </td> 
+    </tr>{%endif%}
+    {% if forloop.counter == 1  %}
+    <a class="btn btn-primary" href="{% url 'addcarrier' carrier.carrier_num %}"> add </a>
+    {% endif %}
+
+    {% endfor %}
+
+</table>
+</div>
+{% endblock %}

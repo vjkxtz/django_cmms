@@ -1,0 +1,21 @@
+{% extends "main.html"%}
+
+{% block content%}
+
+<h1> List Lines</h1>
+
+<table class="">
+    <tr> <th>Line</th>
+    </tr>
+    {% for history in object_list %}
+    <tr> 
+        <td> 
+            {{history.line}}</td>   
+            <td> <a href="{% url 'historyview' history.line%}"> view </a> </td> 
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

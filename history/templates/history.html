@@ -1,0 +1,25 @@
+{% extends "main.html"%}
+
+{% block content%}
+<div class="container-sm ">
+<h1> List Carrier</h1>
+<a class="btn btn-primary" href="{% url 'history'%}"> go back</a>
+</div>
+
+<div class="container">
+    <div class="row row-col-1 row-col-md-3 g-4">
+    {% for history in object_list %}
+    <div class="col">
+    <div class="card" style="width: 12rem">
+        <div class="card-body">
+            <h5 class="card-title">{{history.carrier_num}}</h5>
+            <p class="card-text">{{history.greasing}}</p>
+            <a class="btn btn-primary" href="{% url 'carrier' history.carrier_num %}"> Carrier</a>
+        </div>
+    </div>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

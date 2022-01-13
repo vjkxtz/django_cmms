@@ -1,0 +1,39 @@
+{% extends "main.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="container ">
+    <a class = "btn btn-primary" href="{{request.META.HTTP_REFERER}}">Go back</a>
+<form class="form-horizontal" method="post">
+{%csrf_token %}
+
+{% comment %} {{ form.as_ul}} 
+<input type="submit" value="Create" class="btn btn-primary"> {% endcomment %}
+<form method= 'get' action="">
+    {{ form|crispy}}
+    <input type="submit" value="submit" class="btn btn-primary">
+</form>
+
+
+{% comment %} {{form.non_field_errors }}
+<form>
+{% for field in form %}
+    <div class="mb-3">
+        {{field.errors}}
+        <div class="form-label">
+        {{field.label_tag}}
+            <div class="">
+                {{ field}}
+            </div>
+        </div>
+        {% if field.help_text %}
+        <p class="help-text">{{field.help_text}}</p>
+        {% endif %}
+    </div>
+</form>
+{% endfor %} {% endcomment %}
+</div>
+
+
+{% endblock %}
