@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'todo',
     'history',
     'rest_framework',
-    'crispy_forms'
+    'crispy_forms',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'ex.urls'
@@ -134,3 +136,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 LOGIN_URL = 'login'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+CORS_ORIGIN_ALLOW_ALL = True

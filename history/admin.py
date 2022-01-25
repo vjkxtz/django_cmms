@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Carrier, LineHistory, Carrier_number, Stop_numbers, Stop, Tsw_number, Tsw 
+from .models import Carrier, LineHistory, Carrier_number, Stop_numbers, Stop, Tsw_number, Tsw, Type, Sub_type, Part
 
 # Register your models here.
 
@@ -33,3 +33,6 @@ class Tsw_numberAdmin(admin.ModelAdmin):
 class TswAdmin(admin.ModelAdmin):
     list_display = ('tsw', 'bearing_change_date', 'work_done', 'work_done_date')
 
+admin.site.register(Type)
+admin.site.register(Part)
+admin.site.register(Sub_type)

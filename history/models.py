@@ -72,3 +72,29 @@ class Tsw(models.Model):
     work_done_date = models.DateTimeField(auto_now_add = True)
     def __str__(self):
         return str(self.tsw)
+
+class Part(models.Model):
+    assembly = models.CharField(max_length =30)
+
+    def __str__(self):
+        return str(self.assembly)
+
+class Type(models.Model):
+    line = models.ForeignKey(LineHistory, default=1, on_delete=models.SET_DEFAULT)
+    assembly = models.ForeignKey(Part, default=1, on_delete=models.SET_DEFAULT)
+
+    def __str__(self):
+        return str(self.line)
+
+class Sub_type(models.Model):
+    PARTS_TYPE = (('bearing', 'Bearing'), ('blade', 'Blade'), ('front pickup trolly', 'Front Pickup Trolly'), ('front non pickup trolly', 'Front Non pickup trolly'), ('rear pickup trolly', 'Rear Pickup Trolly'), ('rear non pickup trolly', 'Rear Non pickup trolly'),('valve', 'Valve'), ('Cylinder', 'Cylinder'))
+
+    assembly = models.ForeignKey(Type, default=1, on_delete=models.SET_DEFAULT)
+    number = models.IntegerField()
+    part = models.CharField(max_length=25, choices= PARTS_TYPE, default = 'Bearing', null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    work_done_date = models.DateField()
+    work_done = models.CharField(max_length = 100, blank= True,null = True )
+
+    def __str__(self):
+        return str(self.assembly)

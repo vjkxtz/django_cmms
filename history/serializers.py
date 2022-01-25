@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Carrier_number, Carrier, Stop_numbers, Stop, Tsw_number, Tsw
+from .models import Carrier_number, Carrier, Stop_numbers, Stop, Tsw_number, Tsw, Part, Type, Sub_type
 
 class Carrier_number_serializer(serializers.ModelSerializer):
     class Meta:
@@ -30,4 +30,19 @@ class Tsw_number_serializer(serializers.ModelSerializer):
 class Tsw_serializer(serializers.ModelSerializer):
     class Meta:
         model = Tsw
+        fields = '__all__'
+
+class Part_serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Part
+        fields = '__all__'
+
+class Type_serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Type
+        fields = '__all__'
+
+class Sub_type_serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Sub_type
         fields = '__all__'
